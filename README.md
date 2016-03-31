@@ -9,10 +9,10 @@ Since all participants were beginners in HW related projects there is no working
 
 Content
 
-  -Gyro code (INO, example output etc.)
+  - Gyro code (INO, example output etc.)
 
-  -INO and Python code for reading the Gyro movements and stearing the motor
+  - INO and Python code for reading the Gyro movements and stearing the motor
 
-  -Maze Solver
+  - Maze Solver
 
-  -fragment of intended webpage for displaying sensor data
+  - fragment of intended webpage for displaying sensor data
