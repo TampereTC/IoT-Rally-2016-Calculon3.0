@@ -1,0 +1,11 @@
+Please find attached the file called maze_solver.ino. The strategy was a naïve one:
+-          Drive straight
+
+-          If a wall is detected then stop, reverse a bit and turn right
+
+-          repeat
+
+The ‘drive_straight’ sub-routine is incomplete as the steering for driving off the straight line (delta measured by variable ‘orientation’) is missing 
+(Ref: lines 87 and 90) and was to be completed next.
+
+
