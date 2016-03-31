@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="node_modules/smoothie/smoothie.js"></script>
+
+    <style>
+        body {
+            background-color: black;
+            color: darkgrey;
+        }
+
+        .measurements {
+            width: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Randomized mock
+    </h1>
+    <canvas id="mycanvas" width="700" height="150"></canvas>
+
+    <script type="text/javascript">
+
+        var interval = 1000;
+
+        var smoothie = new SmoothieChart({interpolation:'linear',grid:{millisPerLine:interval}});
+        smoothie.streamTo(document.getElementById("mycanvas"))
+
+        var line1 = new TimeSeries();
+        var line2 = new TimeSeries();
+
+        var measurements = document.createElement("div");
+        measurements.className = "measurements";
+        document.body.appendChild(measurements)
+
+        var measurementArray = [];
+
+        setInterval(function() {
+
+            //xhttp.send();
+
+            //XMLHttp request above was to replace dummy code below
+            var time = new Date().getTime();
+            var timeString = new Date().toUTCString();
+
+            var line1Data = {
+                time: time,
+                value: Math.random()
+            };
+
+            var line2Data = {
+                time: time,
+                value: Math.random()
+            };
+
+            line1.append(time, line1Data.value);
+            line2.append(time, line2Data.value);
+
+            var measurement = document.createElement("div");
+            measurement.appendChild(document.createTextNode(timeString + " " + line1Data.value + " " + line2Data.value));
+
+            if (measurementArray.length < 19) {
+                measurementArray.push(measurement);
+            } else {
+                var oldMeasurement = measurementArray.shift();
+                measurements.removeChild(oldMeasurement);
+                measurementArray.push(measurement);
+            }
+
+            measurements.appendChild(measurement);
+        }, interval);
+
+        smoothie.addTimeSeries(line1);
+        smoothie.addTimeSeries(line2);
+
+        //Below was to be code for XMLHttp requests to the device (forced to be synchronous)
+
+        /*var xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "http://<esp.hostname>/console/send?text=%7B%22sensor%22%3A%22distance%22%7D", false);
+
+        xhttp.onreadystatechange(function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                var time = new Date().getTime();
+                var timeString = new Date().toUTCString();
+
+                var line1Data = {
+                    time: time,
+                    value: Math.random()
+                };
+
+                var line2Data = {
+                    time: time,
+                    value: Math.random()
+                };
+
+                line1.append(time, line1Data.value);
+                line2.append(time, line2Data.value);
+
+                var measurement = document.createElement("div");
+                measurement.appendChild(document.createTextNode(timeString + " " + line1Data.value + " " + line2Data.value));
+
+                if (measurementArray.length < 19) {
+                    measurementArray.push(measurement);
+                } else {
+                    var oldMeasurement = measurementArray.shift();
+                    measurements.removeChild(oldMeasurement);
+                    measurementArray.push(measurement);
+                }
+
+                measurements.appendChild(measurement);
+            }
+        });*/
+    </script>
+</body>
+
+</html>

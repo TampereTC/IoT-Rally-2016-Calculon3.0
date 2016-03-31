@@ -1,0 +1,8 @@
+Here is the web page I worked on during the first day before I got locked out from my computer.
+
+It was intended to display some sensor data from the device. The displayed data was to be decided later on.
+
+It displays and draws a line chart from randomized numbers with Smoothie.js
+(which is expected to be found at "node_modules/smoothie/smoothie.js” in the same directory).
+
+ 
